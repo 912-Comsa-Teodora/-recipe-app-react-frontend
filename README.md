@@ -52,3 +52,44 @@ export default tseslint.config({
   },
 })
 ```
+
+# 🍽️ Recipe App — React + TypeScript
+
+A full-featured recipe management app built with **React**, **TypeScript**, **Tailwind CSS**, and **Recharts**. It supports all CRUD operations, live stats with charts, category filtering, search, pagination, and full testing with Vitest.
+
+---
+
+## 🚀 Features
+
+✅ Add / Edit / Delete Recipes  
+✅ Dynamic Ingredients + Nutritional Info  
+✅ Filter by Category (multi-select)  
+✅ Search by Recipe Title or Ingredients  
+✅ Pagination (client-side)  
+✅ Highlight min / max / average calories with colors  
+✅ 📊 Three live-updating charts (Bar, Pie, Line)  
+✅ 🧪 Unit + integration tests using Vitest
+
+---
+
+## 🧰 Tech Stack
+
+- ⚛️ React + TypeScript
+- 🎨 Tailwind CSS
+- 📊 Recharts
+- 🧪 Vitest + @testing-library/react
+- 📁 File-based mock data
+- ✅ Context API for global state
+
+---
+
+## 🛠 Installation & Setup
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/912-Comsa-Teodora/recipe-app-react-frontend.git
+cd recipe-app-react-frontend
+npm install
+npm run dev
+npm run test
