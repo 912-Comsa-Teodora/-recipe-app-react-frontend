@@ -1,0 +1,212 @@
+import { Recipe } from "../types/Recipe";
+import { v4 as uuidv4 } from "uuid";
+
+import pastaImg from "../assets/pasta.jpg";
+import saladImg from "../assets/salad.jpg";
+import soupImg from "../assets/soup.jpeg";
+import burgerImg from "../assets/burger.jpg";
+import pancakesImg from "../assets/pancakes.jpg";
+import curryImg from "../assets/curry.jpg";
+
+export const mockRecipes: Recipe[] = [
+  {
+    id: "1",
+    title: "Spaghetti Carbonara",
+    category: "Pasta",
+    image: pastaImg,
+    preparationTime: 10,
+    cookingTime: 20,
+    servings: 2,
+    ingredients: [
+      { id: uuidv4(), name: "Spaghetti", quantity: 200, unit: "g" },
+      { id: uuidv4(), name: "Eggs", quantity: 2, unit: "pcs" },
+      { id: uuidv4(), name: "Parmesan", quantity: 50, unit: "g" },
+    ],
+    directions: "Boil pasta. Mix with eggs and cheese. Serve hot.",
+    nutritionalInfo: {
+      calories: 600,
+      proteins: 25,
+      fats: 20,
+      carbs: 75,
+      fiber: 5,
+    },
+  },
+  {
+    id: uuidv4(),
+    title: "Greek Salad",
+    category: "Salad",
+    image: saladImg,
+    preparationTime: 15,
+    cookingTime: 0,
+    servings: 4,
+    ingredients: [
+      { id: uuidv4(), name: "Cucumber", quantity: 1, unit: "pcs" },
+      { id: uuidv4(), name: "Tomatoes", quantity: 3, unit: "pcs" },
+      { id: uuidv4(), name: "Feta Cheese", quantity: 150, unit: "g" },
+    ],
+    directions: "Chop ingredients. Mix and drizzle with olive oil.",
+    nutritionalInfo: {
+      calories: 300,
+      proteins: 10,
+      fats: 20,
+      carbs: 12,
+      fiber: 4,
+    },
+  },
+  {
+    id: uuidv4(),
+    title: "Creamy Pumpkin Soup",
+    category: "Soup",
+    image: soupImg,
+    preparationTime: 10,
+    cookingTime: 25,
+    servings: 3,
+    ingredients: [
+      { id: uuidv4(), name: "Pumpkin", quantity: 400, unit: "g" },
+      { id: uuidv4(), name: "Onion", quantity: 1, unit: "pcs" },
+      { id: uuidv4(), name: "Cream", quantity: 100, unit: "ml" },
+    ],
+    directions: "Cook pumpkin and onion, then blend with cream.",
+    nutritionalInfo: {
+      calories: 350,
+      proteins: 6,
+      fats: 15,
+      carbs: 30,
+      fiber: 6,
+    },
+  },
+  {
+    id: uuidv4(),
+    title: "Classic Burger",
+    category: "Fast Food",
+    image: burgerImg,
+    preparationTime: 15,
+    cookingTime: 15,
+    servings: 1,
+    ingredients: [
+      { id: uuidv4(), name: "Beef Patty", quantity: 1, unit: "pcs" },
+      { id: uuidv4(), name: "Burger Bun", quantity: 1, unit: "pcs" },
+      { id: uuidv4(), name: "Cheddar", quantity: 1, unit: "slice" },
+    ],
+    directions: "Grill the patty, assemble the burger with cheese and bun.",
+    nutritionalInfo: {
+      calories: 800,
+      proteins: 30,
+      fats: 45,
+      carbs: 50,
+      fiber: 3,
+    },
+  },
+  {
+    id: uuidv4(),
+    title: "Banana Pancakes",
+    category: "Breakfast",
+    image: pancakesImg,
+    preparationTime: 10,
+    cookingTime: 10,
+    servings: 2,
+    ingredients: [
+      { id: uuidv4(), name: "Banana", quantity: 2, unit: "pcs" },
+      { id: uuidv4(), name: "Eggs", quantity: 2, unit: "pcs" },
+      { id: uuidv4(), name: "Flour", quantity: 100, unit: "g" },
+    ],
+    directions: "Mix all ingredients and fry in a pan.",
+    nutritionalInfo: {
+        calories: 540,
+        proteins: 12,
+        fats: 10,
+        carbs: 70,
+        fiber: 4,
+      },
+      
+  },
+  {
+    id: uuidv4(),
+    title: "Chicken Curry",
+    category: "Main",
+    image: curryImg,
+    preparationTime: 20,
+    cookingTime: 30,
+    servings: 4,
+    ingredients: [
+      { id: uuidv4(), name: "Chicken", quantity: 500, unit: "g" },
+      { id: uuidv4(), name: "Coconut Milk", quantity: 200, unit: "ml" },
+      { id: uuidv4(), name: "Curry Powder", quantity: 2, unit: "tbsp" },
+    ],
+    directions: "Cook chicken, add spices and coconut milk. Simmer.",
+    nutritionalInfo: {
+      calories: 650,
+      proteins: 35,
+      fats: 30,
+      carbs: 40,
+      fiber: 5,
+    },
+  },
+  {
+    id: uuidv4(),
+    title: "Classic Burger",
+    category: "Fast Food",
+    image: burgerImg,
+    preparationTime: 15,
+    cookingTime: 15,
+    servings: 1,
+    ingredients: [
+      { id: uuidv4(), name: "Beef Patty", quantity: 1, unit: "pcs" },
+      { id: uuidv4(), name: "Burger Bun", quantity: 1, unit: "pcs" },
+      { id: uuidv4(), name: "Cheddar", quantity: 1, unit: "slice" },
+    ],
+    directions: "Grill the patty, assemble the burger with cheese and bun.",
+    nutritionalInfo: {
+      calories: 200,
+      proteins: 10,
+      fats: 45,
+      carbs: 50,
+      fiber: 3,
+    },
+  },
+  {
+    id: uuidv4(),
+    title: "Banana Pancakes",
+    category: "Breakfast",
+    image: pastaImg,
+    preparationTime: 10,
+    cookingTime: 10,
+    servings: 2,
+    ingredients: [
+      { id: uuidv4(), name: "Banana", quantity: 2, unit: "pcs" },
+      { id: uuidv4(), name: "Eggs", quantity: 2, unit: "pcs" },
+      { id: uuidv4(), name: "Flour", quantity: 100, unit: "g" },
+    ],
+    directions: "Mix all ingredients and fry in a pan.",
+    nutritionalInfo: {
+        calories: 1000,
+        proteins: 27,
+        fats: 10,
+        carbs: 70,
+        fiber: 4,
+      },
+      
+  },
+  {
+    id: uuidv4(),
+    title: "Chicken Curry",
+    category: "Main",
+    image: saladImg,
+    preparationTime: 20,
+    cookingTime: 30,
+    servings: 4,
+    ingredients: [
+      { id: uuidv4(), name: "Chicken", quantity: 500, unit: "g" },
+      { id: uuidv4(), name: "Coconut Milk", quantity: 200, unit: "ml" },
+      { id: uuidv4(), name: "Curry Powder", quantity: 2, unit: "tbsp" },
+    ],
+    directions: "Cook chicken, add spices and coconut milk. Simmer.",
+    nutritionalInfo: {
+      calories: 200,
+      proteins: 40,
+      fats: 30,
+      carbs: 40,
+      fiber: 5,
+    },
+  },
+];
