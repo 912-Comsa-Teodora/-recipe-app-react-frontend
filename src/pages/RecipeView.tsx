@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useRecipes } from "../context/RecipeContext";
 
+
 const RecipeView = () => {
   const { id } = useParams();
   const { recipes } = useRecipes();
@@ -41,14 +42,23 @@ const RecipeView = () => {
         <h3 className="font-semibold mb-1">Directions</h3>
         <p className="mb-6 text-sm whitespace-pre-line">{recipe.directions}</p>
 
-        <h3 className="font-semibold mb-1">Nutritional Info</h3>
-        <div className="grid grid-cols-2 gap-2 text-sm">
-          {Object.entries(recipe.nutritionalInfo).map(([key, value]) => (
-            <div key={key}>
-              {key}: {value}
-            </div>
-          ))}
-        </div>
+        {(recipe.nutritionalInfo.calories > 0 ||
+          recipe.nutritionalInfo.proteins > 0 ||
+          recipe.nutritionalInfo.fats > 0 ||
+          recipe.nutritionalInfo.carbs > 0 ||
+          recipe.nutritionalInfo.fiber > 0) && (
+          <div className="mb-6">
+            <h3 className="text-lg font-semibold mb-2">Nutritional Info (per serving)</h3>
+            <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
+              <li>Calories: {recipe.nutritionalInfo.calories}</li>
+              <li>Proteins: {recipe.nutritionalInfo.proteins}g</li>
+              <li>Fats: {recipe.nutritionalInfo.fats}g</li>
+              <li>Carbs: {recipe.nutritionalInfo.carbs}g</li>
+              <li>Fiber: {recipe.nutritionalInfo.fiber}g</li>
+            </ul>
+          </div>
+        )}
+
 
         <button
           className="mt-6 text-blue-500 hover:underline"

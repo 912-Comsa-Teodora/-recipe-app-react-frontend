@@ -51,11 +51,30 @@ const EditRecipe = () => {
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
-    if (recipe) {
-      updateRecipe(recipe);
-      navigate("/");
+    if (!recipe) return;
+  
+    if (!recipe.title.trim() || !recipe.category.trim() || !recipe.directions.trim()) {
+      alert("Title, Category, and Directions are required.");
+      return;
     }
+  
+    if (recipe.preparationTime <= 0 || recipe.cookingTime <= 0) {
+      alert("Preparation and cooking time must be greater than 0.");
+      return;
+    }
+  
+    if (
+      recipe.ingredients.length === 0 ||
+      recipe.ingredients.every((ing) => ing.quantity <= 0 || !ing.name.trim() || !ing.unit.trim())
+    ) {
+      alert("At least one ingredient with a name and quantity > 0 is required, and it's unit.");
+      return;
+    }
+  
+    updateRecipe(recipe);
+    navigate("/");
   };
+  
 
   if (!recipe) return <div className="p-8">Recipe not found.</div>;
 
