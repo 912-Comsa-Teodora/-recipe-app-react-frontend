@@ -50,7 +50,7 @@ const RecipeView = () => {
           <div className="mb-6">
             <h3 className="text-lg font-semibold mb-2">Nutritional Info (per serving)</h3>
             <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
-              <li>Calories: {recipe.nutritionalInfo.calories}</li>
+              <li>Calories: {recipe.nutritionalInfo.calories}g</li>
               <li>Proteins: {recipe.nutritionalInfo.proteins}g</li>
               <li>Fats: {recipe.nutritionalInfo.fats}g</li>
               <li>Carbs: {recipe.nutritionalInfo.carbs}g</li>
@@ -58,7 +58,6 @@ const RecipeView = () => {
             </ul>
           </div>
         )}
-
 
         <button
           className="mt-6 text-blue-500 hover:underline"

@@ -7,20 +7,20 @@ type Props = {
   calorieStats: { max: number; min: number; avg: number };
 };
 
-const RecipeCard = ({ recipe, onDelete,calorieStats }: Props) => {
+const RecipeCard = ({ recipe, onDelete, calorieStats }: Props) => {
   const navigate = useNavigate();
 
   const { calories } = recipe.nutritionalInfo;
-let calColor = "";
+  let calColor = "";
 
-if (calories === calorieStats.max) {
-  calColor = "text-red-500 font-bold";
-} else if (calories === calorieStats.min) {
-  calColor = "text-green-600 font-bold";
-} else if (Math.abs(calories - calorieStats.avg) <= 20) {
-  calColor = "text-yellow-500 font-semibold";
-}
-
+  //show statistics for calories: red if max, green if min, yellow if within 20 of avg
+  if (calories === calorieStats.max) {
+    calColor = "text-red-500 font-bold";
+  } else if (calories === calorieStats.min) {
+    calColor = "text-green-600 font-bold";
+  } else if (Math.abs(calories - calorieStats.avg) <= 20) {
+    calColor = "text-yellow-500 font-semibold";
+  }
 
 
   return (

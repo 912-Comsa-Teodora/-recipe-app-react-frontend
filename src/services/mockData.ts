@@ -37,7 +37,7 @@ export const mockRecipes: Recipe[] = [
     category: "Salad",
     image: saladImg,
     preparationTime: 15,
-    cookingTime: 0,
+    cookingTime: 10,
     servings: 4,
     ingredients: [
       { id: uuidv4(), name: "Cucumber", quantity: 1, unit: "pcs" },
@@ -90,7 +90,7 @@ export const mockRecipes: Recipe[] = [
     ],
     directions: "Grill the patty, assemble the burger with cheese and bun.",
     nutritionalInfo: {
-      calories: 800,
+      calories: 8000,
       proteins: 30,
       fats: 45,
       carbs: 50,
@@ -135,7 +135,7 @@ export const mockRecipes: Recipe[] = [
     ],
     directions: "Cook chicken, add spices and coconut milk. Simmer.",
     nutritionalInfo: {
-      calories: 650,
+      calories: 1370,
       proteins: 35,
       fats: 30,
       carbs: 40,
@@ -157,7 +157,7 @@ export const mockRecipes: Recipe[] = [
     ],
     directions: "Grill the patty, assemble the burger with cheese and bun.",
     nutritionalInfo: {
-      calories: 200,
+      calories: 150,
       proteins: 10,
       fats: 45,
       carbs: 50,

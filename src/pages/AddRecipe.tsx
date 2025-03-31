@@ -28,7 +28,11 @@ const AddRecipe = () => {
 
   const [error, setError] = useState("");
 
-  const handleIngredientChange = (index: number, field: keyof Ingredient, value: any) => {
+  const handleIngredientChange = (
+    index: number,
+    field: keyof Ingredient,
+    value: any
+  ) => {
     const newIngredients = [...form.ingredients];
     newIngredients[index][field] = value as never;
     setForm({ ...form, ingredients: newIngredients });
@@ -37,7 +41,10 @@ const AddRecipe = () => {
   const addIngredient = () => {
     setForm({
       ...form,
-      ingredients: [...form.ingredients, { id: uuidv4(), name: "", quantity: 0, unit: "" }],
+      ingredients: [
+        ...form.ingredients,
+        { id: uuidv4(), name: "", quantity: 0, unit: "" },
+      ],
     });
   };
 
@@ -48,22 +55,32 @@ const AddRecipe = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     if (!form.title.trim() || !form.category.trim() || !form.directions.trim()) {
-      alert("Title, Category, and Directions are required.");
+      setError("Please fill in all required fields.");
       return;
     }
-  
-    if (form.preparationTime <= 0 || form.cookingTime <= 0) {
-      alert("Preparation and cooking time must be greater than 0.");
+
+    if (
+      form.preparationTime <= 0 ||
+      form.cookingTime <= 0 ||
+      form.servings <= 0
+    ) {
+      setError("Preparation, cooking time, and servings must be greater than 0.");
       return;
     }
-  
-    if (form.ingredients.length === 0 || form.ingredients[0].quantity <= 0 || form.ingredients[0].unit.trim() === "") {
-      alert("At least one ingredient with quantity > 0 is required.");
+
+    const firstIngredient = form.ingredients[0];
+    if (
+      form.ingredients.length === 0 ||
+      !firstIngredient.name.trim() ||
+      firstIngredient.quantity <= 0 ||
+      !firstIngredient.unit.trim()
+    ) {
+      setError("At least one valid ingredient is required.");
       return;
     }
-  
+
     const newRecipe: Recipe = {
       id: uuidv4(),
       title: form.title,
@@ -76,12 +93,10 @@ const AddRecipe = () => {
       directions: form.directions,
       nutritionalInfo: form.nutritionalInfo,
     };
-    
-  
+
     addRecipe(newRecipe);
     navigate("/");
   };
-  
 
   return (
     <div className="p-8 max-w-4xl mx-auto bg-white shadow-md rounded">
@@ -92,8 +107,11 @@ const AddRecipe = () => {
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Basic Inputs */}
         <div className="flex flex-col">
-          <label className="text-sm text-gray-600 mb-1">Title</label>
+          <label htmlFor="title" className="text-sm text-gray-600 mb-1">
+            Title
+          </label>
           <input
+            id="title"
             type="text"
             className="border p-2 rounded"
             value={form.title}
@@ -102,8 +120,11 @@ const AddRecipe = () => {
           />
         </div>
         <div className="flex flex-col">
-          <label className="text-sm text-gray-600 mb-1">Category</label>
+          <label htmlFor="category" className="text-sm text-gray-600 mb-1">
+            Category
+          </label>
           <input
+            id="category"
             type="text"
             className="border p-2 rounded"
             value={form.category}
@@ -112,8 +133,11 @@ const AddRecipe = () => {
           />
         </div>
         <div className="flex flex-col">
-          <label className="text-sm text-gray-600 mb-1">Image Path or URL</label>
+          <label htmlFor="image" className="text-sm text-gray-600 mb-1">
+            Image Path or URL
+          </label>
           <input
+            id="image"
             type="text"
             className="border p-2 rounded"
             value={form.image}
@@ -124,8 +148,11 @@ const AddRecipe = () => {
         {/* Time & Servings */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="flex flex-col">
-            <label className="text-sm text-gray-600 mb-1">Prep Time (min)</label>
+            <label htmlFor="prep" className="text-sm text-gray-600 mb-1">
+              Preparation Time
+            </label>
             <input
+              id="prep"
               type="number"
               min={0}
               className="border p-2 rounded"
@@ -136,8 +163,11 @@ const AddRecipe = () => {
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-sm text-gray-600 mb-1">Cook Time (min)</label>
+            <label htmlFor="cook" className="text-sm text-gray-600 mb-1">
+              Cooking Time
+            </label>
             <input
+              id="cook"
               type="number"
               min={0}
               className="border p-2 rounded"
@@ -148,14 +178,17 @@ const AddRecipe = () => {
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-sm text-gray-600 mb-1">Servings</label>
+            <label htmlFor="serving" className="text-sm text-gray-600 mb-1">
+              Servings
+            </label>
             <input
+              id="serving"
               type="number"
               min={1}
               className="border p-2 rounded"
               value={form.servings}
               onChange={(e) =>
-                setForm({ ...form, servings: parseInt(e.target.value) || 1 })
+                setForm({ ...form, servings: parseInt(e.target.value) || 0 })
               }
             />
           </div>
@@ -168,10 +201,12 @@ const AddRecipe = () => {
             <div key={ing.id} className="grid grid-cols-3 gap-2 mb-2">
               <input
                 type="text"
-                placeholder="Name"
+                placeholder="Ingredient name"
                 className="border p-2 rounded"
                 value={ing.name}
-                onChange={(e) => handleIngredientChange(index, "name", e.target.value)}
+                onChange={(e) =>
+                  handleIngredientChange(index, "name", e.target.value)
+                }
               />
               <input
                 type="number"
@@ -179,7 +214,11 @@ const AddRecipe = () => {
                 className="border p-2 rounded"
                 value={ing.quantity}
                 onChange={(e) =>
-                  handleIngredientChange(index, "quantity", parseFloat(e.target.value) || 0)
+                  handleIngredientChange(
+                    index,
+                    "quantity",
+                    parseFloat(e.target.value) || 0
+                  )
                 }
               />
               <input
@@ -187,7 +226,9 @@ const AddRecipe = () => {
                 placeholder="Unit"
                 className="border p-2 rounded"
                 value={ing.unit}
-                onChange={(e) => handleIngredientChange(index, "unit", e.target.value)}
+                onChange={(e) =>
+                  handleIngredientChange(index, "unit", e.target.value)
+                }
               />
               {form.ingredients.length > 1 && (
                 <button
@@ -200,15 +241,22 @@ const AddRecipe = () => {
               )}
             </div>
           ))}
-          <button type="button" className="text-blue-500 mt-2" onClick={addIngredient}>
+          <button
+            type="button"
+            className="text-blue-500 mt-2"
+            onClick={addIngredient}
+          >
             + Add Ingredient
           </button>
         </div>
 
         {/* Directions */}
         <div className="flex flex-col">
-          <label className="text-sm text-gray-600 mb-1">Directions</label>
+          <label htmlFor="directions" className="text-sm text-gray-600 mb-1">
+            Directions
+          </label>
           <textarea
+            id="directions"
             className="border p-2 rounded"
             rows={4}
             value={form.directions}
@@ -249,6 +297,13 @@ const AddRecipe = () => {
           Save Recipe
         </button>
       </form>
+
+      <button
+        className="mt-6 text-blue-500 hover:underline"
+        onClick={() => navigate("/")}
+      >
+        ← Back to recipes
+      </button>
     </div>
   );
 };

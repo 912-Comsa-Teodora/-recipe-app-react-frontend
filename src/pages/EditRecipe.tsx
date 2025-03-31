@@ -49,6 +49,7 @@ const EditRecipe = () => {
     setRecipe({ ...recipe, ingredients: updated });
   };
 
+  //validation 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
     if (!recipe) return;
@@ -269,6 +270,13 @@ const EditRecipe = () => {
           </button>
         </div>
       </form>
+
+      <button
+          className="mt-6 text-blue-500 hover:underline"
+          onClick={() => navigate("/")}
+        >
+          ← Back to recipes
+        </button>
     </div>
   );
 };

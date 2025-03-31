@@ -6,7 +6,8 @@ import Statistics from "../components/Statistics";
 
 const RecipeList = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const recipesPerPage = 8;
+  const recipesPerPage = 6;
+
 
   const [searchTerm, setSearchTerm] = useState("");
   const { recipes, deleteRecipe } = useRecipes();
@@ -17,7 +18,7 @@ const RecipeList = () => {
     new Set(recipes.map((r) => r.category.trim().toLowerCase()))
   );
 
-  // ✅ Filter by search (title + ingredients) and category
+  // Filter by search (title + ingredients) and category
   const filteredRecipes = recipes.filter((r) => {
     const title = r.title.trim().toLowerCase();
     const search = searchTerm.trim().toLowerCase();
@@ -34,27 +35,30 @@ const RecipeList = () => {
     return matchesCategoryFilter && (matchesTitle || matchesIngredients);
   });
 
-  // ✅ Pagination Logic
+  // Pagination Logic
   const indexOfLast = currentPage * recipesPerPage;
   const indexOfFirst = indexOfLast - recipesPerPage;
   const currentRecipes = filteredRecipes.slice(indexOfFirst, indexOfLast);
   const totalPages = Math.ceil(filteredRecipes.length / recipesPerPage);
 
-  // ✅ Reset to first page when filters/search change
+  //  Reset to first page when filters/search change
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm, selectedCategories]);
 
-  // ✅ Stats for color coding
+  // Stats for color coding
   const calorieValues = recipes.map((r) => r.nutritionalInfo.calories);
   const maxCalories = Math.max(...calorieValues);
   const minCalories = Math.min(...calorieValues);
   const avgCalories =
     calorieValues.reduce((sum, val) => sum + val, 0) / calorieValues.length;
 
+    console.log("AVG Calories:", avgCalories);
+
+
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
-      {/* 🔍 Search + ➕ Add Button */}
+      {/* Search + Add Button */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <input
           type="text"
@@ -71,7 +75,7 @@ const RecipeList = () => {
         </button>
       </div>
 
-      {/* 🧠 Category Filter Buttons */}
+      {/* Category Filter Buttons */}
       <div className="flex flex-wrap gap-2 mb-6">
         <button
           className={`px-4 py-1 rounded border ${
@@ -106,7 +110,7 @@ const RecipeList = () => {
         })}
       </div>
 
-      {/* 🍽 Recipe Cards */}
+      {/* Recipe Cards */}
       <div className="flex flex-wrap gap-6">
         {currentRecipes.map((recipe) => (
           <RecipeCard
@@ -118,7 +122,7 @@ const RecipeList = () => {
         ))}
       </div>
 
-      {/* 📄 Pagination Controls */}
+      {/* Pagination Controls */}
       <div className="mt-8 flex flex-wrap justify-center gap-2">
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
           <button

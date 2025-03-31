@@ -15,9 +15,9 @@ import {
   Legend,
 } from "recharts";
 
-const COLORS = ["#00C49F", "#FFBB28", "#FF8042", "#8884d8", "#82ca9d"];
+const COLORS = ["#00C49F", "#FFBB28", "#FF8042", "#8884d8", "#82ca9d", "#FF8052", "#EF8342", "#FFBB38"];
 
-// Define interfaces for our chart data
+// charts to display recipe statistics (calories, protein, cooking time)
 interface CalorieData {
   name: string;
   calories: number;
@@ -36,12 +36,12 @@ interface CookingData {
 const Statistics = () => {
   const { recipes } = useRecipes();
 
-  // Provide proper types for the state arrays
+  // data for the charts
   const [calorieData, setCalorieData] = useState<CalorieData[]>([]);
   const [proteinData, setProteinData] = useState<ProteinData[]>([]);
   const [cookingData, setCookingData] = useState<CookingData[]>([]);
 
-  // Simulate async data loading
+  // async data loading
   useEffect(() => {
     const timeout = setTimeout(() => {
       const calories = recipes.map((r) => ({
@@ -69,7 +69,7 @@ const Statistics = () => {
 
   return (
     <div className="bg-white p-6 rounded shadow mb-8">
-      <h2 className="text-2xl font-bold mb-4">📊 Recipe Statistics</h2>
+      <h2 className="text-2xl font-bold mb-4">Recipe Statistics</h2>
 
       {/* Bar Chart - Calories */}
       <div className="mb-8 w-full h-64">
